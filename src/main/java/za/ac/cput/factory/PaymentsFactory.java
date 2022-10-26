@@ -10,21 +10,18 @@ import java.util.UUID;
  *  Date: 29 March 2022
  * */
 public class PaymentsFactory {
-    public static Payments createPayments(String customerID, String paymentType, String  addPayment, String amount, String updatePayment, String cancelPayment, String paymentID){
-        if(Helper2.isNotEmpty(paymentID)|| Helper2.isNotEmpty(customerID)||Helper2.isNotEmpty(paymentType)||Helper2.isNotEmpty(addPayment)||Helper2.isNotEmpty(amount)||Helper2.isNotEmpty(updatePayment)||Helper2.isNotEmpty(cancelPayment) )
+    public static Payments createPayments(String customerID, String paymentType, String amount, String paymentID){
+        if(Helper2.isNotEmpty(paymentID)|| Helper2.isNotEmpty(customerID)||Helper2.isNotEmpty(paymentType) )
             return null;
 
 
 
-        return new Payments.PaymentsBuilder()
+        return new Payments.Builder()
 
                 .setPaymentID(paymentID)
                 .setCustomerID(customerID)
                 .setPaymentType(paymentType)
-                .setAddPayment(addPayment)
                 .setAmount(amount)
-                .setUpdatePayment(updatePayment)
-                .setCancelPayment(cancelPayment)
                 .build();
     }
 }

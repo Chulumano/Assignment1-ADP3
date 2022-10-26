@@ -10,12 +10,12 @@ import java.util.UUID;
  * */
 public class TablesFactory {
     public static Tables createTables(String tableID,String tableStatus,String capacity,String tableType){
-    if (Helper2.isNotEmpty(tableStatus) || Helper2.isNotEmpty(capacity)||Helper2.isNotEmpty(tableType)|| Helper2.isNotEmpty(tableID))
-    return null;
-            return new Tables.TablesBuilder()
-                    .setTableID(tableID)
-                    .setTableStatus(tableStatus)
-                    .setCapacity(capacity)
-                    .setTableStatus(tableStatus).build();
+        if (Helper2.isNotEmpty(tableStatus) || Helper2.isNotEmpty(capacity)||Helper2.isNotEmpty(tableType)|| Helper2.isNotEmpty(tableID))
+            return null;
+        return new Tables.Builder()
+                .setTableID(tableID)
+                .setTableStatus(tableStatus)
+                .setCapacity(capacity)
+                .setTableStatus(tableStatus).build();
     }
 }

@@ -1,15 +1,12 @@
-
 package za.ac.cput.repository;
 
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
+
+@Deprecated
 public interface IRepository <T, ID>{
-  T save(T t);
-  Optional<T> read(ID id);
-   void delete(ID id);
-
-
-
+    T create(T t);
+    T read(ID id);
+    T update(T t);
+    void delete(ID id);
 
 }

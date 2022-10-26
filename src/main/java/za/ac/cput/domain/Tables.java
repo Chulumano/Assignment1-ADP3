@@ -2,25 +2,30 @@ package za.ac.cput.domain;
 
 import org.apache.maven.surefire.shade.org.apache.commons.lang3.builder.Builder;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Locale;
 /* Tables.Java
  *  Entity for Tables
  *  Author: Chulumanco Buhle Nkwindana (219390983)
  *  Date: 29 March 2022
  * */
-public class Tables {
+@Entity
+public class Tables implements Serializable {
+    @NotNull
+    @Id
     private String tableID;
     private String tableStatus;
     private String capacity;
-    public String tableType;
+    private String tableType;
 
-    public Tables(){
+    protected Tables(){}
 
-    }
+    private Tables(Builder builder){
 
-    private Tables(TablesBuilder builder){
-
-this.tableID=builder.tableID;
+        this.tableID=builder.tableID;
         this.tableStatus=builder.tableStatus;
         this.capacity=builder.capacity;
         this.tableType=builder.tableType;
@@ -43,39 +48,37 @@ this.tableID=builder.tableID;
         return tableType;
     }
 
-    @Override
-    public String toString() {
-        return "Tables{" +
-                "tableID=" + tableID +
-                ", tableStatus='" + tableStatus + '\'' +
-                ", capacity=" + capacity +
-                ", tableType='" + tableType + '\'' +
-                '}';
-    }
-
-    public static class TablesBuilder {
+    public static class Builder {
         private String tableID;
         private String tableStatus;
         private String capacity;
         public String tableType;
 
-        public TablesBuilder setTableID(String tableID) {
+        public Builder setTableID(String tableID) {
             this.tableID = tableID;
             return this;
         }
 
-        public TablesBuilder setTableStatus(String tableStatus) {
+        public Builder setTableStatus(String tableStatus) {
             this.tableStatus = tableStatus;
             return this;
         }
 
-        public TablesBuilder setCapacity(String capacity) {
+        public Builder setCapacity(String capacity) {
             this.capacity = capacity;
             return this;
         }
 
-        public TablesBuilder setTableType(String tableType) {
+        public Builder setTableType(String tableType) {
             this.tableType = tableType;
+            return this;
+        }
+
+        public Builder copy(Tables tables) {
+            this.tableID = tables.tableID;
+            this.tableStatus = tables.tableStatus;
+            this.capacity = tables.capacity;
+            this.tableType = tables.tableType;
             return this;
         }
 
@@ -83,12 +86,20 @@ this.tableID=builder.tableID;
             return new Tables(this);
         }
 
-        public TablesBuilder copy(Tables tables) {
-            this.tableID = tables.tableID;
-            this.tableStatus = tables.tableStatus;
-            this.capacity = tables.capacity;
-            this.tableType = tables.tableType;
-            return this;
+
+        @Override
+        public String toString() {
+            return "Tables{" +
+                    "tableID=" + tableID +
+                    ", tableStatus='" + tableStatus + '\'' +
+                    ", capacity=" + capacity +
+                    ", tableType='" + tableType + '\'' +
+                    '}';
         }
+
+
+
+
+
     }
 }
